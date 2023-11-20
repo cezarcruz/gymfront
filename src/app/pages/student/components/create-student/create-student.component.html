@@ -1,1 +1,43 @@
-<p>create-student works!</p>
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" placeholder="Ex: Carlos Alberto">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Idade</mat-label>
+        <input type="number" matInput formControlName="age" placeholder="Ex: 19">
+    </mat-form-field>
+
+    <div formGroupName="address">
+        <div>
+            <mat-form-field>
+                <mat-label>CEP</mat-label>
+                <input type="text" matInput formControlName="zipcode" placeholder="Ex: 13188021">
+                @if (zipcode) {
+                    <button matSuffix mat-icon-button aria-label="Clear" (click)="searchBy()" type="button">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                }
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Rua</mat-label>
+            <input type="text" matInput formControlName="street" placeholder="Ex: Rua dos Alfeneiros">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Número</mat-label>
+            <input type="text" matInput formControlName="num" placeholder="Ex: 129">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Bairro</mat-label>
+            <input type="text" matInput formControlName="neighborhood" placeholder="Ex: Jardim Amanda   ">
+        </mat-form-field>
+    </div>
+
+
+    <button mat-flat-button color="primary" type="submit">Criar</button>
+</form>
