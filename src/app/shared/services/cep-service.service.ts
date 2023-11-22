@@ -23,5 +23,4 @@ export class CepServiceService {
               }) as Address));
   }
 
-
 }
