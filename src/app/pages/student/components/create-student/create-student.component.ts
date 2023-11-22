@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,7 +13,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { CepServiceService } from '../../../../shared/services/cep-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
-
 
 @Component({
   selector: 'app-create-student',
@@ -22,18 +26,19 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatButtonModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [CepServiceService],
   templateUrl: './create-student.component.html',
-  styleUrl: './create-student.component.scss'
+  styleUrl: './create-student.component.scss',
 })
 export class CreateStudentComponent {
-
   constructor(
     private formBuilder: FormBuilder,
-    private cepService: CepServiceService
-  ) { }
+    private cepService: CepServiceService,
+  ) {}
+
+  protected exemploSignal = signal('Teste');
 
   studentForm = this.formBuilder.group({
     name: ['', [Validators.required]],
@@ -42,27 +47,29 @@ export class CreateStudentComponent {
       zipcode: ['', [Validators.required]],
       street: ['', [Validators.required]],
       num: ['', [Validators.required]],
-      neighborhood: ['', [Validators.required]]
-    })
+      neighborhood: ['', [Validators.required]],
+    }),
   });
-
 
   public onSubmit() {
     console.log(JSON.stringify(this.studentForm.value));
   }
 
   public searchBy() {
-    const zipcode = '13188021'
+    const zipcode = '13188021';
 
-    this.cepService.searchBy(zipcode)
-      .subscribe(data => {
-        this.studentForm.patchValue({ address: { zipcode: data.zipcode, street: data.street, neighborhood: data.neighborhood } });
+    this.cepService.searchBy(zipcode).subscribe((data) => {
+      this.studentForm.patchValue({
+        address: {
+          zipcode: data.zipcode,
+          street: data.street,
+          neighborhood: data.neighborhood,
+        },
       });
+    });
   }
 
   get zipcode() {
     return this.studentForm.get('address.zipcode')?.value;
   }
-
-
 }
