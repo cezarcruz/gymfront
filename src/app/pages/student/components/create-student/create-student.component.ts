@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
 import {
   FormBuilder,
@@ -34,17 +34,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CreateStudentComponent {
   constructor(
-    private formBuilder: FormBuilder,
-    private cepService: CepServiceService,
+    private readonly formBuilder: FormBuilder,
+    private readonly cepService: CepServiceService,
   ) {}
-
-  protected exemploSignal = signal('Teste');
 
   studentForm = this.formBuilder.group({
     name: ['', [Validators.required]],
     age: ['', [Validators.required, Validators.max(99)]],
     address: this.formBuilder.group({
-      zipcode: ['', [Validators.required]],
+      zipcode: ['', [Validators.required, Validators.maxLength(9)]],
       street: ['', [Validators.required]],
       num: ['', [Validators.required]],
       neighborhood: ['', [Validators.required]],
@@ -52,6 +50,11 @@ export class CreateStudentComponent {
   });
 
   public onSubmit() {
+    if (this.studentForm.invalid) {
+      console.error('not today');
+      return;
+    }
+
     console.log(JSON.stringify(this.studentForm.value));
   }
 

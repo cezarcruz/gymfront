@@ -13,10 +13,10 @@
         <div>
             <mat-form-field>
                 <mat-label>CEP</mat-label>
-                <input type="text" matInput formControlName="zipcode" placeholder="Ex: 13188021">
+                <input type="text" [maxLength]="9" matInput formControlName="zipcode" placeholder="Ex: 13188021">
                 @if (zipcode) {
                     <button matSuffix mat-icon-button aria-label="Clear" (click)="searchBy()" type="button">
-                        <mat-icon>close</mat-icon>
+                        <mat-icon>search</mat-icon>
                     </button>
                 }
             </mat-form-field>
