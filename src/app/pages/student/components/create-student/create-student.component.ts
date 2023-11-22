@@ -13,16 +13,27 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-create-student',
   standalone: true,
-  imports: [CommonModule, JsonPipe,
-    MatInputModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatButtonModule, HttpClientModule, MatIconModule],
+  imports: [
+    CommonModule,
+    JsonPipe,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatIconModule
+  ],
   providers: [CepServiceService],
   templateUrl: './create-student.component.html',
   styleUrl: './create-student.component.scss'
 })
 export class CreateStudentComponent {
 
-  constructor(private formBuilder: FormBuilder,
-    private cepService: CepServiceService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private cepService: CepServiceService
+  ) { }
 
   studentForm = this.formBuilder.group({
     name: ['', [Validators.required]],
