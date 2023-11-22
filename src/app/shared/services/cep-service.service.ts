@@ -14,7 +14,7 @@ export class CepServiceService {
 
   constructor(private http: HttpClient) { }
 
-  public searchBy(zipcode: String): Observable<Address> {
+  public searchBy(zipcode: string): Observable<Address> {
     return this.http.get<AddressResponse>(`https://viacep.com.br/ws/${zipcode}/json/`)
               .pipe(map(r => ({
                 zipcode: r.cep,
