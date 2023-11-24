@@ -1,18 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
-import {
-  FormBuilder,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { CepServiceService } from '../../../../shared/services/cep-service.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import FormUtils from '../../../../shared/utils/form-utils';
 
 @Component({
   selector: 'app-create-student',
@@ -20,13 +15,11 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     JsonPipe,
-    MatInputModule,
-    MatFormFieldModule,
-    FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
     HttpClientModule,
-    MatIconModule,
+    ButtonModule,
+    InputTextModule,
+    InputNumberModule,
   ],
   providers: [CepServiceService],
   templateUrl: './create-student.component.html',
@@ -51,6 +44,7 @@ export class CreateStudentComponent {
 
   public onSubmit() {
     if (this.studentForm.invalid) {
+      FormUtils.markAllControlsAsDirty([this.studentForm]);
       console.error('not today');
       return;
     }

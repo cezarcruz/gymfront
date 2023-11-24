@@ -1,43 +1,101 @@
 <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input type="text" matInput formControlName="name" placeholder="Ex: Carlos Alberto">
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-label>Idade</mat-label>
-        <input type="number" matInput formControlName="age" placeholder="Ex: 19">
-    </mat-form-field>
-
-    <div formGroupName="address">
-        <div>
-            <mat-form-field>
-                <mat-label>CEP</mat-label>
-                <input type="text" [maxLength]="9" matInput formControlName="zipcode" placeholder="Ex: 13188021">
-                @if (zipcode) {
-                    <button matSuffix mat-icon-button aria-label="Clear" (click)="searchBy()" type="button">
-                        <mat-icon>search</mat-icon>
-                    </button>
-                }
-            </mat-form-field>
-        </div>
-
-        <mat-form-field>
-            <mat-label>Rua</mat-label>
-            <input type="text" matInput formControlName="street" placeholder="Ex: Rua dos Alfeneiros">
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Número</mat-label>
-            <input type="text" matInput formControlName="num" placeholder="Ex: 129">
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Bairro</mat-label>
-            <input type="text" matInput formControlName="neighborhood" placeholder="Ex: Jardim Amanda   ">
-        </mat-form-field>
+  <div class="formgrid grid">
+    <div class="field col">
+      <label for="name">Nome</label>
+      <input
+        id="name"
+        type="text"
+        pInputText
+        formControlName="name"
+        placeholder="Ex: Carlos Alberto"
+        class="w-full"
+        required
+      />
     </div>
 
+    <div class="field col">
+      <label for="age">Idade</label>
 
-    <button mat-flat-button color="primary" type="submit">Criar</button>
+      <input
+        type="text"
+        id="age"
+        pInputText
+        formControlName="age"
+        placeholder="Ex: 19"
+        [min]="0"
+        [max]="99"
+        class="w-full"
+      />
+    </div>
+  </div>
+
+  <div formGroupName="address">
+    <div class="formgrid grid">
+      <div class="field col-12 md:col-2">
+        <label for="zipcode">CEP</label>
+
+        <div class="p-inputgroup">
+          <input
+            id="zipcode"
+            type="text"
+            [maxLength]="9"
+            pInputText
+            formControlName="zipcode"
+            placeholder="Ex: 13188021"
+            class="w-full"
+          />
+          <button
+            type="button"
+            pButton
+            icon="pi pi-search"
+            styleClass="p-button-danger"
+            (click)="searchBy()"
+          > </button>
+        </div>
+      </div>
+    </div>
+    <div class="formgrid grid">
+      <div class="field col-12 md:col-6">
+        <label for="street">Rua</label>
+
+        <input
+          id="street"
+          type="text"
+          pInputText
+          formControlName="street"
+          placeholder="Ex: Rua dos Alfeneiros"
+          class="w-full"
+        />
+      </div>
+
+      <div class="field col-12 md:col-2">
+        <label for="num">Número</label>
+
+        <input
+          id="num"
+          type="text"
+          pInputText
+          formControlName="num"
+          placeholder="Ex: 129"
+          class="w-full"
+        />
+      </div>
+
+      <div class="field col-12 md:col-6">
+        <label for="neighborhood">Bairro</label>
+        <input
+          id="neighborhood"
+          type="text"
+          pInputText
+          formControlName="neighborhood"
+          placeholder="Ex: Jardim Amanda"
+          class="w-full"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- <p-button label="Criar" type="submit" /> -->
+  <button pButton type="submit">Criar</button>
 </form>
+

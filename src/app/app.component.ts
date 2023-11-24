@@ -11,7 +11,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     <app-header></app-header>
     <router-outlet></router-outlet>
   `,
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'gymfront';
