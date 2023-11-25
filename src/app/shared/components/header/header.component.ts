@@ -14,7 +14,16 @@ import { MenuItem } from 'primeng/api';
     RouterLinkActive,
     MenubarModule,
   ],
-  templateUrl: './header.component.html',
+  template: `
+    <p-menubar [model]="menuItens">
+      <ng-template pTemplate="start">
+        <div class="ml-2 mr-2">
+          <a class="pi pi-home" style="font-size: 1.5rem" routerLink="/home">
+          </a>
+        </div>
+      </ng-template>
+    </p-menubar>
+  `,
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
@@ -30,6 +39,17 @@ export class HeaderComponent implements OnInit {
             label: 'New',
             icon: 'pi pi-fw pi-plus',
             routerLink: '/students/create-student',
+          },
+        ],
+      },
+      {
+        label: 'Classes',
+        icon: 'pi pi-fw pi-book',
+        items: [
+          {
+            label: 'Manage',
+            icon: 'pi pi-fw pi-sliders-h',
+            routerLink: '/classes/management',
           },
         ],
       },
