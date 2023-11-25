@@ -32,9 +32,7 @@ export class LoadingHttpInterceptor implements HttpInterceptor {
         counter = counter--;
 
         if (counter === 0) {
-          setTimeout(() => {
-            this.loadingService.hide();
-          }, 10_000);
+          this.loadingService.hide();
         }
       }),
     );

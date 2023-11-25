@@ -10,7 +10,9 @@ import { HttpLoadingComponent } from './shared/components/http-loading/http-load
   imports: [CommonModule, RouterOutlet, HeaderComponent, HttpLoadingComponent],
   template: `
     <app-header />
-    <router-outlet />
+    <div class="m-4">
+      <router-outlet />
+    </div>
     <app-http-loading />
   `,
   styleUrl: './app.component.scss',

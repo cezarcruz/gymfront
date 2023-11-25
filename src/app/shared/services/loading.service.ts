@@ -4,7 +4,6 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class LoadingService {
-  // refactor, hate _ as identifier
   private _showLoading = signal(false);
 
   public show(): void {
