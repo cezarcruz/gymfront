@@ -9,7 +9,6 @@
         formControlName="name"
         placeholder="Ex: Carlos Alberto"
         class="w-full"
-        required
       />
     </div>
 
@@ -41,14 +40,14 @@
             [maxLength]="9"
             pInputText
             formControlName="zipcode"
-            placeholder="Ex: 13188021"
+            placeholder="Ex: 01310-930"
             class="w-full"
+            aria-describedby="zipcode-error"
           />
           <button
             type="button"
             pButton
             icon="pi pi-search"
-            styleClass="p-button-danger"
             (click)="searchBy()"
           > </button>
 
@@ -98,7 +97,7 @@
       </div>
     </div>
   </div>
-
-  <button pButton type="submit">Criar</button>
+  <div class="formgrid grid">
+    <button pButton class="p-button-primary" type="submit">Criar</button>
+  </div>
 </form>
-

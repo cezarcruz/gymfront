@@ -31,25 +31,25 @@ import FormUtils from '../../../../shared/utils/form-utils';
   styleUrl: './create-student.component.scss',
 })
 export class CreateStudentComponent {
-  private readonly formBuilder = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
   private readonly cepService = inject(CepService);
 
-  studentForm = this.formBuilder.group(
+  studentForm = this.fb.group(
     {
       name: ['', [Validators.required]],
       age: ['', [Validators.required, Validators.max(99)]],
-      address: this.formBuilder.group({
+      address: this.fb.group({
         zipcode: [
-          '',
+          '01310-930',
           [
             Validators.required,
             Validators.minLength(8),
             Validators.maxLength(9),
           ],
         ],
-        street: ['', [Validators.required]],
-        num: ['', [Validators.required]],
-        neighborhood: ['', [Validators.required]],
+        street: [{ value: '', disabled: true }, [Validators.required]],
+        num: [{ value: '', disabled: true }, [Validators.required]],
+        neighborhood: [{ value: '', disabled: true }, [Validators.required]],
       }),
     },
     { updateOn: 'blur' },
@@ -81,7 +81,13 @@ export class CreateStudentComponent {
           neighborhood: data.neighborhood,
         },
       });
+
+      this.address?.enable();
     });
+  }
+
+  get address() {
+    return this.studentForm.get('address');
   }
 
   get zipcode() {
