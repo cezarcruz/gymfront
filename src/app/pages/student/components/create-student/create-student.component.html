@@ -51,7 +51,11 @@
             styleClass="p-button-danger"
             (click)="searchBy()"
           > </button>
+
         </div>
+        @if (zipcode.invalid && zipcode.dirty) {
+          <small id="zipcode-error" class="p-error">CEP inválido</small>
+        }
       </div>
     </div>
     <div class="formgrid grid">
@@ -95,7 +99,6 @@
     </div>
   </div>
 
-  <!-- <p-button label="Criar" type="submit" /> -->
   <button pButton type="submit">Criar</button>
 </form>
 

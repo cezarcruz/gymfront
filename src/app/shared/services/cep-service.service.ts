@@ -10,7 +10,7 @@ import AddressResponse from './response/addres-response';
 @Injectable({
   providedIn: 'root',
 })
-export class CepServiceService {
+export class CepService {
   constructor(private http: HttpClient) {}
 
   public searchBy(zipcode: string): Observable<Address> {
