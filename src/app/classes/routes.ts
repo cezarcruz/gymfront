@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { ClassManagerComponent } from './components/class-manager/class-manager.component';
+import { ClassManagerComponent } from './class-manager/class-manager.component';
 
 export default [
   { path: 'management', component: ClassManagerComponent },

@@ -7,12 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { CepService } from '../../../../shared/services/cep-service.service';
+import { CepService } from '../../shared/services/';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
-import FormUtils from '../../../../shared/utils/form-utils';
+import FormUtils from '../../shared/utils/form-utils';
 
 @Component({
   selector: 'app-create-student',

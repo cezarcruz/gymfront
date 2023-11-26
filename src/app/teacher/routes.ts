@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { TeacherManagerComponent } from './components/teacher-manager/teacher-manager.component';
+import { TeacherManagerComponent } from './teacher-manager/teacher-manager.component';
 
 export default [
   { path: 'management', component: TeacherManagerComponent },

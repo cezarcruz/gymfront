@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { ModalityManagerComponent } from './components/modality-manager/modality-manager.component';
+import { ModalityManagerComponent } from './modality-manager/modality-manager.component';
 
 export default [
   { path: 'management', component: ModalityManagerComponent },
