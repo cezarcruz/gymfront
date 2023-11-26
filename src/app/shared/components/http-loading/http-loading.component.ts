@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { LoadingService } from '../../services/loading.service';
+import { LoadingService } from '../../../core/services/loading.service';
 import { DialogModule } from 'primeng/dialog';
 
 @Component({

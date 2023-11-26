@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { CepService } from '../../shared/services/';
+import { CepService } from '../../core/services';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';

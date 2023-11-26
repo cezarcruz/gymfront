@@ -5,8 +5,6 @@ import Address from '../models/address';
 import { HttpClient } from '@angular/common/http';
 import AddressResponse from './response/addres-response';
 
-//const URL = 'https://viacep.com.br/ws/13188021/json/'
-
 @Injectable({
   providedIn: 'root',
 })
