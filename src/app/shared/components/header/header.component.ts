@@ -53,6 +53,17 @@ export class HeaderComponent implements OnInit {
           },
         ],
       },
+      {
+        label: 'Modality',
+        icon: 'pi pi-fw pi-book',
+        items: [
+          {
+            label: 'Manage',
+            icon: 'pi pi-fw pi-sliders-h',
+            routerLink: '/modality/management',
+          },
+        ],
+      },
     ];
   }
 }
