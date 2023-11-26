@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PanelModule } from 'primeng/panel';
 import {
   AbstractControl,
-  FormBuilder,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -82,7 +82,7 @@ import { TableModule } from 'primeng/table';
   styleUrl: './teacher-manager.component.scss',
 })
 export class TeacherManagerComponent implements OnInit {
-  private readonly fb = inject(FormBuilder);
+  private readonly fb = inject(NonNullableFormBuilder);
   private readonly teacherService = inject(TeacherService);
 
   protected teachers: Teacher[] = [];
@@ -109,7 +109,7 @@ export class TeacherManagerComponent implements OnInit {
     }
 
     this.teacherService
-      .create(this.teacherForm.getRawValue() as Teacher)
+      .create(this.teacherForm.getRawValue())
       .subscribe((body) => {
         console.info('criado com sucesso = ' + JSON.stringify(body));
         this.teacherForm.reset();
