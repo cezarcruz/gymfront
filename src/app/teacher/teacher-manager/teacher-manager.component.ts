@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PanelModule } from 'primeng/panel';
@@ -11,6 +11,9 @@ import {
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { TeacherService } from '../../core/services/teacher.service';
+import { Teacher } from '../../core/models/teacher';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-teacher-manager',
@@ -21,6 +24,7 @@ import { ButtonModule } from 'primeng/button';
     PanelModule,
     ReactiveFormsModule,
     InputTextModule,
+    TableModule,
   ],
   template: `
     <p-panel header="Cadastro">
@@ -53,15 +57,49 @@ import { ButtonModule } from 'primeng/button';
         </div>
       </form>
     </p-panel>
+
+    <br />
+
+    <p-table
+      [value]="teachers"
+      styleClass="p-datatable-gridlines"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-teacher>
+        <tr>
+          <td>{{ teacher.id }}</td>
+          <td>{{ teacher.name }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
   `,
   styleUrl: './teacher-manager.component.scss',
 })
-export class TeacherManagerComponent {
+export class TeacherManagerComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
+  private readonly teacherService = inject(TeacherService);
+
+  protected teachers: Teacher[] = [];
 
   protected teacherForm = this.fb.group({
     name: ['', Validators.required],
   });
+
+  ngOnInit(): void {
+    this.getAllTeachers();
+  }
+
+  protected getAllTeachers() {
+    this.teacherService
+      .getAll()
+      .subscribe((teachers) => (this.teachers = teachers));
+  }
 
   protected submit() {
     if (this.teacherForm.invalid) {
@@ -69,6 +107,14 @@ export class TeacherManagerComponent {
       console.error('not today');
       return;
     }
+
+    this.teacherService
+      .create(this.teacherForm.getRawValue() as Teacher)
+      .subscribe((body) => {
+        console.info('criado com sucesso = ' + JSON.stringify(body));
+        this.teacherForm.reset();
+        this.getAllTeachers();
+      });
   }
 
   get teacherName() {
