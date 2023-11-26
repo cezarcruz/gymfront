@@ -64,6 +64,17 @@ export class HeaderComponent implements OnInit {
           },
         ],
       },
+      {
+        label: 'Teacher',
+        icon: 'pi pi-fw pi-book',
+        items: [
+          {
+            label: 'Manage',
+            icon: 'pi pi-fw pi-sliders-h',
+            routerLink: '/teacher/management',
+          },
+        ],
+      },
     ];
   }
 }
