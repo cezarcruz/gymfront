@@ -19,4 +19,12 @@ export class TeacherService {
   public getAll(): Observable<Teacher[]> {
     return this.httpClient.get<Teacher[]>(url);
   }
+
+  public update(teacher: TeacherRequest, id: number): Observable<Teacher> {
+    return this.httpClient.put<Teacher>(url + `/${id}`, teacher);
+  }
+
+  public remove(id: number): Observable<unknown> {
+    return this.httpClient.delete(url + `/${id}`);
+  }
 }

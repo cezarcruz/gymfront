@@ -14,6 +14,9 @@ import { ButtonModule } from 'primeng/button';
 import { TeacherService } from '../../core/services/teacher.service';
 import { Teacher } from '../../core/models/teacher';
 import { TableModule } from 'primeng/table';
+import { ToastService } from '../../core/services';
+import { MessagesModule } from 'primeng/messages';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-teacher-manager',
@@ -25,67 +28,28 @@ import { TableModule } from 'primeng/table';
     ReactiveFormsModule,
     InputTextModule,
     TableModule,
+    MessagesModule,
   ],
-  template: `
-    <p-panel header="Cadastro">
-      <form [formGroup]="teacherForm" (ngSubmit)="submit()">
-        <div class="formgrid grid">
-          <div class="field col">
-            <label for="name">Nome</label>
-            <input
-              id="name"
-              type="text"
-              pInputText
-              formControlName="name"
-              placeholder="Ex: Carlos Alberto"
-              class="w-full"
-              aria-describedby="teacher-name-error"
-            />
-            @if (teacherName.invalid && teacherName.dirty) {
-              <small id="teacher-name-error" class="p-error"
-                >CEP inválido</small
-              >
-            }
-          </div>
-        </div>
-        <div class="formgrid grid">
-          <div class="field col-12 md:col-6">
-            <button pButton class="p-button-primary" type="submit">
-              Criar
-            </button>
-          </div>
-        </div>
-      </form>
-    </p-panel>
-
-    <br />
-
-    <p-table
-      [value]="teachers"
-      styleClass="p-datatable-gridlines"
-      [tableStyle]="{ 'min-width': '50rem' }"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-teacher>
-        <tr>
-          <td>{{ teacher.id }}</td>
-          <td>{{ teacher.name }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-  `,
+  templateUrl: './teacher-manager.component.html',
   styleUrl: './teacher-manager.component.scss',
 })
 export class TeacherManagerComponent implements OnInit {
   private readonly fb = inject(NonNullableFormBuilder);
   private readonly teacherService = inject(TeacherService);
+  private readonly toastService = inject(ToastService);
 
   protected teachers: Teacher[] = [];
+
+  protected isEditing: boolean = false;
+  protected editingId: number = 0;
+
+  protected messages: Message[] = [
+    {
+      severity: 'info',
+      summary: 'Info',
+      detail: 'Nenhum Professor cadastrado, que tal comećar agora?',
+    },
+  ];
 
   protected teacherForm = this.fb.group({
     name: ['', Validators.required],
@@ -108,13 +72,49 @@ export class TeacherManagerComponent implements OnInit {
       return;
     }
 
+    if (this.isEditing && this.editingId != 0) {
+      this.teacherService
+        .update(this.teacherForm.getRawValue(), this.editingId)
+        .subscribe((body) => {
+          console.log(body);
+          this.teacherForm.reset();
+          this.isEditing = false;
+          this.editingId = 0;
+          this.getAllTeachers();
+          this.toastService.showSuccessMessage(
+            'Professor atualizado com sucesso',
+          );
+        });
+      return;
+    }
+
     this.teacherService
       .create(this.teacherForm.getRawValue())
       .subscribe((body) => {
-        console.info('criado com sucesso = ' + JSON.stringify(body));
+        console.log(body);
         this.teacherForm.reset();
         this.getAllTeachers();
+        this.toastService.showSuccessMessage(
+          'Professor cadastrador com sucesso',
+        );
       });
+  }
+
+  protected remove() {
+    this.teacherService.remove(this.editingId).subscribe((body) => {
+      console.log(body);
+      this.teacherForm.reset();
+      this.editingId = 0;
+      this.isEditing = false;
+      this.getAllTeachers();
+      this.toastService.showSuccessMessage('Professor removido com sucesso');
+    });
+  }
+
+  protected rowEditInit(teacher: Teacher) {
+    this.isEditing = true;
+    this.editingId = teacher.id;
+    this.teacherForm.patchValue(teacher);
   }
 
   get teacherName() {

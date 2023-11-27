@@ -9,6 +9,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { LoadingHttpInterceptor } from './shared/interceptors/loading-http.interceptor';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,5 +21,6 @@ export const appConfig: ApplicationConfig = {
       useClass: LoadingHttpInterceptor,
       multi: true,
     },
+    MessageService, //need some understand
   ],
 };
