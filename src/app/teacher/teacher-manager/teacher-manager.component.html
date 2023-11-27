@@ -1,35 +1,4 @@
-<p-panel header="Cadastro">
-  <form [formGroup]="teacherForm" (ngSubmit)="submit()">
-    <div class="formgrid grid">
-      <div class="field col">
-        <label for="name">Nome</label>
-        <input
-          id="name"
-          type="text"
-          pInputText
-          formControlName="name"
-          placeholder="Ex: Carlos Alberto"
-          class="w-full"
-          aria-describedby="teacher-name-error"
-        />
-        @if (teacherName.invalid && teacherName.dirty) {
-          <small id="teacher-name-error" class="p-error">CEP inválido</small>
-        }
-      </div>
-    </div>
-    <div class="formgrid grid">
-      <div class="field col-12 md:col-2">
-        <button pButton class="p-button-primary" type="submit">Salvar</button>
-      </div>
-      @if (isEditing) {
-        <div class="field col-12 md:col-1">
-          <button pButton class="p-button-danger" (click)="remove()">Remover</button>
-        </div>
-      }
-    </div>
-  </form>
-</p-panel>
-
+<app-create-teacher (saveFinished)="saveFinished()" (cancelEvent)="onCancel()" [teacher]="teacherToEdit"/>
 <br />
 
 @if (teachers.length > 0) {
