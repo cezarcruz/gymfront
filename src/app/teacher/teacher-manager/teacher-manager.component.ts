@@ -39,7 +39,7 @@ export class TeacherManagerComponent implements OnInit {
     {
       severity: 'info',
       summary: 'Info',
-      detail: 'Nenhum Professor cadastrado, que tal comećar agora?',
+      detail: 'Nenhum Professor cadastrado, que tal começar agora?',
     },
   ];
 
