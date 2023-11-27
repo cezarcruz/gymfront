@@ -77,9 +77,7 @@ export class TeacherManagerComponent implements OnInit {
         .update(this.teacherForm.getRawValue(), this.editingId)
         .subscribe((body) => {
           console.log(body);
-          this.teacherForm.reset();
-          this.isEditing = false;
-          this.editingId = 0;
+          this.resetEditing();
           this.getAllTeachers();
           this.toastService.showSuccessMessage(
             'Professor atualizado com sucesso',
@@ -103,9 +101,7 @@ export class TeacherManagerComponent implements OnInit {
   protected remove() {
     this.teacherService.remove(this.editingId).subscribe((body) => {
       console.log(body);
-      this.teacherForm.reset();
-      this.editingId = 0;
-      this.isEditing = false;
+      this.resetEditing();
       this.getAllTeachers();
       this.toastService.showSuccessMessage('Professor removido com sucesso');
     });
@@ -115,6 +111,12 @@ export class TeacherManagerComponent implements OnInit {
     this.isEditing = true;
     this.editingId = teacher.id;
     this.teacherForm.patchValue(teacher);
+  }
+
+  private resetEditing() {
+    this.teacherForm.reset();
+    this.editingId = 0;
+    this.isEditing = false;
   }
 
   get teacherName() {
