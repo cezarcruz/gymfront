@@ -21,6 +21,6 @@ export const appConfig: ApplicationConfig = {
       useClass: LoadingHttpInterceptor,
       multi: true,
     },
-    MessageService, //need some understand
+    MessageService, //need some understanding
   ],
 };
