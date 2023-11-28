@@ -1,13 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
 import {
-  AbstractControl,
-  FormBuilder,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 
-import { CepService } from '../../core/services';
+import { CepService, StudentService } from '../../core/services';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -31,8 +30,9 @@ import FormUtils from '../../shared/utils/form-utils';
   styleUrl: './create-student.component.scss',
 })
 export class CreateStudentComponent {
-  private readonly fb = inject(FormBuilder);
+  private readonly fb = inject(NonNullableFormBuilder);
   private readonly cepService = inject(CepService);
+  private readonly studentService = inject(StudentService);
 
   studentForm = this.fb.group(
     {
@@ -62,7 +62,10 @@ export class CreateStudentComponent {
       return;
     }
 
-    console.log(JSON.stringify(this.studentForm.value));
+    this.studentService.create(this.studentForm.getRawValue()).subscribe(() => {
+      this.studentForm.reset();
+      console.log('criado com sucesso.');
+    });
   }
 
   public searchBy() {
@@ -87,10 +90,10 @@ export class CreateStudentComponent {
   }
 
   get address() {
-    return this.studentForm.get('address');
+    return this.studentForm.controls.address;
   }
 
   get zipcode() {
-    return this.studentForm.get('address.zipcode') as AbstractControl;
+    return this.studentForm.controls.address.controls.zipcode;
   }
 }

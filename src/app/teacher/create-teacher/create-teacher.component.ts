@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  AbstractControl,
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
@@ -108,6 +107,6 @@ export class CreateTeacherComponent {
   }
 
   get teacherName() {
-    return this.teacherForm.get('name') as AbstractControl;
+    return this.teacherForm.controls.name;
   }
 }
