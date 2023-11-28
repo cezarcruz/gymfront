@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import Address from '../models/address';
+import { Address } from '../models/address';
 import { HttpClient } from '@angular/common/http';
 import AddressResponse from './response/addres-response';
 
