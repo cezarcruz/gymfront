@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Address } from '../models/address';
 import { HttpClient } from '@angular/common/http';
-import AddressResponse from './response/addres-response';
+import { AddressResponse } from './response/addres-response';
 
 @Injectable({
   providedIn: 'root',

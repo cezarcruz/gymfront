@@ -1,5 +1,5 @@
-export default interface AddressResponse {
+export type AddressResponse = {
   cep: string;
   logradouro: string;
   bairro: string;
-}
+};
