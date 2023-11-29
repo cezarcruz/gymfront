@@ -15,8 +15,7 @@ export class CepService {
     return this.http
       .get<AddressResponse>(`https://viacep.com.br/ws/${zipcode}/json/`)
       .pipe(
-        map(
-          (r) =>
+        map(r =>
             ({
               zipcode: r.cep,
               street: r.logradouro,
