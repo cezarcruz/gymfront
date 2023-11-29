@@ -17,7 +17,7 @@ import { ToastModule } from 'primeng/toast';
   ],
   providers: [],
   template: `
-    <p-toast></p-toast>
+    <p-toast />
     <app-header />
     <div class="m-4">
       <router-outlet />
