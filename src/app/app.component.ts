@@ -17,12 +17,14 @@ import { ToastModule } from 'primeng/toast';
   ],
   providers: [],
   template: `
-    <p-toast />
+    @defer {
+      <p-toast />
+      <app-http-loading />
+    }
     <app-header />
     <div class="m-4">
       <router-outlet />
     </div>
-    <app-http-loading />
   `,
   styleUrl: './app.component.scss',
 })
