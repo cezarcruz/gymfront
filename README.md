@@ -17,4 +17,6 @@ classDiagram
         string  street
         string  neighborhood
     }
+
+    Student --> Address
 ```
