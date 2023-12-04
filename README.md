@@ -1,4 +1,13 @@
 ```mermaid
+erDiagram
+    teacher {
+        int id
+        string name
+    }
+
+```
+
+```mermaid
 classDiagram
     class Teacher {
         int    id
