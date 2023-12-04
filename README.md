@@ -1,4 +1,6 @@
 ```mermaid
 classDiagram
-Teacher : string name
+    class Teacher {
+        +string name
+    }
 ```
