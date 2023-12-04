@@ -18,5 +18,5 @@ classDiagram
         string  neighborhood
     }
 
-    Student --> Address
+    Student *-- Address
 ```
