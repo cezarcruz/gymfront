@@ -1,31 +1,23 @@
 ```mermaid
 erDiagram
     teacher {
-        int id
-        string name
+        int     id
+        string  name
     }
 
-```
-
-```mermaid
-classDiagram
-    class Teacher {
-        int    id
-        string name
-    }
-
-    class Student {
+    student {
+        int     id
         string  name
         int     age
-        Address address
     }
 
-    class Address {
+    address {
         string  zipcode
         string  num
         string  street
         string  neighborhood
     }
 
-    Student *-- Address
+    student ||--|{address : contains}
+
 ```
