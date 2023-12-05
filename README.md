@@ -9,6 +9,7 @@ erDiagram
         int     id
         string  name
         int     age
+        address address
     }
 
     address {
@@ -18,6 +19,6 @@ erDiagram
         string  neighborhood
     }
 
-    student ||--|{address : contains}
+    student ||--|{ address : contains
 
 ```
