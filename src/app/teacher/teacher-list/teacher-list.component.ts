@@ -42,6 +42,6 @@ export class TeacherListComponent implements OnInit {
   }
 
   protected rowEditInit(teacher: Teacher) {
-    this.onEdit.emit(teacher);
+    this.edit.emit(teacher);
   }
 }
