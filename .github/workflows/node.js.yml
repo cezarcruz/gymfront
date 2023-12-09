@@ -28,7 +28,7 @@ jobs:
         cache: 'npm'
     - run: npm i @angular/cli -g
     - run: npm ci
-    - run: ng build --if-present
+    - run: ng build
     - run: ng test --no-watch --no-progress --browsers=ChromeHeadless
 
     - name: Cache NPM packages
