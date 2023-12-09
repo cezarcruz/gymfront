@@ -1,11 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PanelModule } from 'primeng/panel';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { Teacher } from '../../core/models/teacher';
 import { CreateTeacherComponent } from '../create-teacher/create-teacher.component';
 import { TeacherListComponent } from '../teacher-list/teacher-list.component';
@@ -14,15 +9,7 @@ import { TeacherStateService } from '../teacher-state.service';
 @Component({
   selector: 'app-teacher-manager',
   standalone: true,
-  imports: [
-    CommonModule,
-    ButtonModule,
-    PanelModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    CreateTeacherComponent,
-    TeacherListComponent,
-  ],
+  imports: [CommonModule, CreateTeacherComponent, TeacherListComponent],
   templateUrl: './teacher-manager.component.html',
   styleUrl: './teacher-manager.component.scss',
 })
