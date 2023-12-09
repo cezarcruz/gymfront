@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PanelModule } from 'primeng/panel';
@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { Teacher } from '../../core/models/teacher';
 import { CreateTeacherComponent } from '../create-teacher/create-teacher.component';
 import { TeacherListComponent } from '../teacher-list/teacher-list.component';
+import { TeacherStateService } from '../teacher-state.service';
 
 @Component({
   selector: 'app-teacher-manager',
@@ -26,21 +27,20 @@ import { TeacherListComponent } from '../teacher-list/teacher-list.component';
   styleUrl: './teacher-manager.component.scss',
 })
 export class TeacherManagerComponent {
+  private readonly teacherStateService = inject(TeacherStateService);
+
   protected teacherToEdit: Teacher | undefined;
 
-  protected editing = false;
-
   protected onCancel() {
-    this.editing = false;
     this.teacherToEdit = undefined;
   }
 
   onEdit($event: Teacher) {
-    this.editing = true;
     this.teacherToEdit = $event;
+    this.teacherStateService.starEditing();
   }
 
   protected saveFinished() {
-    this.editing = false;
+    this.teacherStateService.endEditing();
   }
 }

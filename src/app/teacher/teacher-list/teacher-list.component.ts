@@ -1,12 +1,21 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { TeacherService } from '../../core/services';
 import { Observable } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Teacher } from '../../core/models/teacher';
 import { MessagesModule } from 'primeng/messages';
 import { AsyncPipe } from '@angular/common';
 import { Message } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { TeacherStateService } from '../teacher-state.service';
 
 @Component({
   selector: 'app-teacher-list',
@@ -17,6 +26,8 @@ import { ButtonModule } from 'primeng/button';
 })
 export class TeacherListComponent implements OnInit {
   private readonly teacherService = inject(TeacherService);
+  private readonly teacherStateService = inject(TeacherStateService);
+  private readonly destroyRef = inject(DestroyRef);
 
   protected teachers$ = new Observable<Teacher[]>();
 
@@ -32,7 +43,14 @@ export class TeacherListComponent implements OnInit {
   private edit = new EventEmitter<Teacher>();
 
   ngOnInit(): void {
-    this.getAllTeachers();
+    this.teacherStateService
+      .editingSubscriber()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        if (value == false) {
+          this.getAllTeachers();
+        }
+      });
   }
 
   protected getAllTeachers() {
