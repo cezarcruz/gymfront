@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { TeacherRequest } from './request/teacher-request';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 import { Teacher } from '../models/teacher';
-
-const url = 'http://localhost:3000/teachers';
+import { TeacherRequest } from './request/teacher-request';
 
 @Injectable({
   providedIn: 'root',
@@ -12,19 +11,21 @@ const url = 'http://localhost:3000/teachers';
 export class TeacherService {
   private readonly httpClient = inject(HttpClient);
 
+  private readonly url = environment.apiUrl;
+
   public create(teacher: TeacherRequest): Observable<Teacher> {
-    return this.httpClient.post<Teacher>(url, teacher);
+    return this.httpClient.post<Teacher>(this.url + '/teachers', teacher);
   }
 
   public getAll(): Observable<Teacher[]> {
-    return this.httpClient.get<Teacher[]>(url);
+    return this.httpClient.get<Teacher[]>(this.url + '/teachers');
   }
 
   public update(teacher: TeacherRequest, id: number): Observable<Teacher> {
-    return this.httpClient.put<Teacher>(url + `/${id}`, teacher);
+    return this.httpClient.put<Teacher>(this.url + `/teachers/${id}`, teacher);
   }
 
   public remove(id: number): Observable<unknown> {
-    return this.httpClient.delete(url + `/${id}`);
+    return this.httpClient.delete(this.url + '/teachers' + `/${id}`);
   }
 }
