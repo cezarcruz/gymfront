@@ -1,0 +1,23 @@
+<p-panel header="Cadastro">
+  <form [formGroup]="modalityForm" (ngSubmit)="submit()">
+    <div class="formgrid grid">
+      <div class="field col">
+        <label for="name">Nome</label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          formControlName="name"
+          placeholder="Ex: Cross Fit"
+          class="w-full"
+          aria-describedby="modality-name-error"
+        />
+      </div>
+    </div>
+    <div class="formgrid grid">
+      <div class="field col-12 md:col-2">
+        <button pButton class="p-button-primary" type="submit">Salvar</button>
+      </div>
+    </div>
+  </form>
+</p-panel>

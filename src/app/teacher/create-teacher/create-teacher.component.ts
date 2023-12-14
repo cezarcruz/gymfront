@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PanelModule } from 'primeng/panel';
-import { TeacherService } from '../../core/services/teacher.service';
-import { ToastService } from '../../core/services';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
 import { Teacher } from '../../core/models/teacher';
+import { ToastService } from '../../core/services';
+import { TeacherService } from '../../core/services/teacher.service';
 
 @Component({
   selector: 'app-create-teacher',
@@ -55,7 +55,6 @@ export class CreateTeacherComponent {
   protected submit() {
     if (this.teacherForm.invalid) {
       this.teacherName.markAsDirty({ onlySelf: true });
-      console.error('not today');
       return;
     }
 

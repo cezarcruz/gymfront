@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   DestroyRef,
@@ -6,15 +7,14 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import { TableModule } from 'primeng/table';
-import { TeacherService } from '../../core/services';
-import { Observable } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Teacher } from '../../core/models/teacher';
-import { MessagesModule } from 'primeng/messages';
-import { AsyncPipe } from '@angular/common';
 import { Message } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
+import { TableModule } from 'primeng/table';
+import { Observable } from 'rxjs';
+import { Teacher } from '../../core/models/teacher';
+import { TeacherService } from '../../core/services';
 import { TeacherStateService } from '../teacher-state.service';
 
 @Component({
