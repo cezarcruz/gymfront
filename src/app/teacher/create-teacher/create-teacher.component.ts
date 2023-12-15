@@ -11,6 +11,7 @@ import { PanelModule } from 'primeng/panel';
 import { Teacher } from '../../core/models/teacher';
 import { TeacherService } from '../../core/services/teacher.service';
 import { ToastService } from '../../shared/services';
+import FormUtils from '../../shared/utils/form-utils';
 
 @Component({
   selector: 'app-create-teacher',
@@ -54,7 +55,7 @@ export class CreateTeacherComponent {
 
   protected submit() {
     if (this.teacherForm.invalid) {
-      this.teacherName.markAsDirty({ onlySelf: true });
+      FormUtils.markAllControlsAsDirty([this.teacherForm]);
       return;
     }
 
@@ -78,7 +79,7 @@ export class CreateTeacherComponent {
         console.log(body);
         this.resetEditing();
         this.toastService.showSuccessMessage(
-          'Professor cadastrador com sucesso',
+          'Professor cadastrado com sucesso',
         );
 
         this.saveFinished.emit();
@@ -86,8 +87,7 @@ export class CreateTeacherComponent {
   }
 
   protected remove() {
-    this.teacherService.remove(this.editingId).subscribe((body) => {
-      console.log(body);
+    this.teacherService.remove(this.editingId).subscribe(() => {
       this.resetEditing();
       this.saveFinished.emit();
       this.toastService.showSuccessMessage('Professor removido com sucesso');

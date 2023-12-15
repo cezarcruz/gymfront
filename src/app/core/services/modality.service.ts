@@ -22,7 +22,7 @@ export class ModalityService {
   }
 
   public update(modality: ModalityRequest, id: number) {
-    return this.http.post<void>(this.url + '/modalities/' + id, modality);
+    return this.http.put<void>(this.url + '/modalities/' + id, modality);
   }
 
   public remove(id: number) {

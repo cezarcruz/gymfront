@@ -1,7 +1,11 @@
-<app-create-class />
+<app-create-class
+  (saveFinished)="saveFinished()"
+  (cancelEvent)="onCancel()"
+  [classes]="classToEdit"
+/>
 
 <br />
 
 @defer {
-  <app-classes-list />
+  <app-classes-list (edit)="onEdit($event)" />
 }

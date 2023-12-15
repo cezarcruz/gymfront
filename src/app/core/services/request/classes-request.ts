@@ -1,5 +1,4 @@
-export type Classes = {
-  id: number;
+export type ClassesRequest = {
   name: string;
   modality: string;
   teacher: string;
