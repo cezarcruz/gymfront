@@ -22,7 +22,7 @@ export class ClassesService {
   }
 
   public update(classes: ClassesRequest, id: number): Observable<void> {
-    return this.httpClient.put<void>(this.url + '/classes' + id, classes);
+    return this.httpClient.put<void>(this.url + '/classes/' + id, classes);
   }
 
   public remove(id: number) {

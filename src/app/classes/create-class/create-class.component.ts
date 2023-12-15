@@ -63,7 +63,7 @@ export class CreateClassComponent implements OnInit {
     name: [''],
     modality: ['', Validators.required],
     teacher: ['', Validators.required],
-    weekDays: [[], Validators.required],
+    weekDays: [[] as string[], Validators.required],
   });
 
   @Output()
