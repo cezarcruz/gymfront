@@ -7,7 +7,8 @@ import {
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
-import { ModalityService, ToastService } from '../../core/services';
+import { ModalityService } from '../../core/services';
+import { ToastService } from '../../shared/services';
 import FormUtils from '../../shared/utils/form-utils';
 
 @Component({

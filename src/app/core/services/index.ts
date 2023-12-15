@@ -3,4 +3,3 @@ export * from './loading.service';
 export * from './modality.service';
 export * from './student.service';
 export * from './teacher.service';
-export * from './toast.service';

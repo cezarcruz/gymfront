@@ -1,15 +1,16 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { TitleStrategy, provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { LoadingHttpInterceptor } from './shared/interceptors/loading-http.interceptor';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
+import { routes } from './app.routes';
+import { LoadingHttpInterceptor } from './shared/interceptors/loading-http.interceptor';
+import { TemplateTitleStrategy } from './shared/services';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,5 +23,9 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     MessageService, //need some understanding
+    {
+      provide: TitleStrategy,
+      useClass: TemplateTitleStrategy,
+    },
   ],
 };

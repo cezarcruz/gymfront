@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
+import { MenubarModule } from 'primeng/menubar';
 
 @Component({
   selector: 'app-header',
@@ -47,29 +47,17 @@ export class HeaderComponent implements OnInit {
         icon: 'pi pi-fw pi-book',
         items: [
           {
-            label: 'Manage',
+            label: 'Class',
             icon: 'pi pi-fw pi-sliders-h',
             routerLink: '/classes/management',
           },
-        ],
-      },
-      {
-        label: 'Modality',
-        icon: 'pi pi-fw pi-book',
-        items: [
           {
-            label: 'Manage',
+            label: 'Modality',
             icon: 'pi pi-fw pi-sliders-h',
             routerLink: '/modality/management',
           },
-        ],
-      },
-      {
-        label: 'Teacher',
-        icon: 'pi pi-fw pi-book',
-        items: [
           {
-            label: 'Manage',
+            label: 'Teacher',
             icon: 'pi pi-fw pi-sliders-h',
             routerLink: '/teacher/management',
           },

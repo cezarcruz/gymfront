@@ -9,8 +9,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { Teacher } from '../../core/models/teacher';
-import { ToastService } from '../../core/services';
 import { TeacherService } from '../../core/services/teacher.service';
+import { ToastService } from '../../shared/services';
 
 @Component({
   selector: 'app-create-teacher',
