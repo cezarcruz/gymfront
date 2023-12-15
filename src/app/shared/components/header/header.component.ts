@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.menuItens = [
       {
-        label: 'Student',
+        label: 'Students',
         icon: 'pi pi-fw pi-user',
         items: [
           {
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
         ],
       },
       {
-        label: 'Classes',
+        label: 'Management',
         icon: 'pi pi-fw pi-book',
         items: [
           {

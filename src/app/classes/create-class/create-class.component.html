@@ -1,0 +1,67 @@
+<p-panel header="Cadastro">
+  <form [formGroup]="classForm" (ngSubmit)="submit()">
+    <div class="formgrid grid">
+      <div class="field col">
+        <label for="name">Nome</label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          formControlName="name"
+          placeholder="Ex: Aula Xpto"
+          class="w-full"
+          aria-describedby="teacher-name-error"
+        />
+      </div>
+
+      <div class="field col">
+        <label for="modality">Modalidade</label>
+        @if (modalities$ | async; as modalities) {
+          <p-dropdown
+            formControlName="modality"
+            inputId="modality"
+            [options]="modalities"
+            optionLabel="name"
+            optionValue="id"
+            placeholder="Select a Modality"
+            styleClass="w-full"
+          />
+        }
+      </div>
+    </div>
+    <div class="formgrid grid">
+      <div class="field col-12 md:col-6">
+        <label for="teacher">Modalidade</label>
+        @if (teachers$ | async; as teachers) {
+          <p-dropdown
+            formControlName="teacher"
+            inputId="teacher"
+            [options]="teachers"
+            optionLabel="name"
+            optionValue="id"
+            placeholder="Select a Teacher"
+            styleClass="w-full"
+          />
+        }
+      </div>
+      <div class="field col-12 md:col-6">
+        <label for="weekDays">Modalidade</label>
+        @if (weekDays$ | async; as weekDays) {
+          <p-multiSelect
+            [options]="weekDays"
+            formControlName="weekDays"
+            optionLabel="name"
+            optionValue="label"
+            placeholder="Select Week Days"
+            styleClass="w-full"
+          />
+        }
+      </div>
+    </div>
+    <div class="formgrid grid">
+      <div class="field col-12 md:col-2">
+        <button pButton class="p-button-primary" type="submit">Salvar</button>
+      </div>
+    </div>
+  </form>
+</p-panel>

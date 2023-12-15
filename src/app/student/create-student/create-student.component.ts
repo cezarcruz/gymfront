@@ -1,16 +1,18 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 
-import { CepService, StudentService } from '../../core/services';
+import { KeyFilterModule } from 'primeng/keyfilter';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { CepService, StudentService } from '../../core/services';
 import FormUtils from '../../shared/utils/form-utils';
 
 @Component({
@@ -24,6 +26,7 @@ import FormUtils from '../../shared/utils/form-utils';
     ButtonModule,
     InputTextModule,
     InputNumberModule,
+    KeyFilterModule,
   ],
   providers: [CepService],
   templateUrl: './create-student.component.html',

@@ -24,6 +24,7 @@
         [min]="0"
         [max]="99"
         class="w-full"
+        pKeyFilter="int"
       />
     </div>
   </div>
@@ -49,8 +50,7 @@
             pButton
             icon="pi pi-search"
             (click)="searchBy()"
-          > </button>
-
+          ></button>
         </div>
         @if (zipcode.invalid && zipcode.dirty) {
           <small id="zipcode-error" class="p-error">CEP inválido</small>
