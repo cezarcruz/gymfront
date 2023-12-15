@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { StateService } from '../core/interfaces';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class TeacherStateService implements StateService {
+@Injectable()
+export class ModalityStateService implements StateService {
   private editingStateManager = new BehaviorSubject<boolean>(false);
 
   public startEditing() {

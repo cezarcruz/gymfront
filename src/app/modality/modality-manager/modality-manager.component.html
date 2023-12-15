@@ -1,7 +1,11 @@
-<app-create-modality />
+<app-create-modality
+  [modality]="modalityToEdit"
+  (saveFinished)="saveFinished()"
+  (cancelEvent)="onCancel()"
+/>
 
 <br />
 
 @defer {
-  <app-modality-list />
+  <app-modality-list (edit)="onEdit($event)" />
 }

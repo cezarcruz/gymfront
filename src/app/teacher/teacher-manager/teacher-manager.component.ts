@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 
 import { Teacher } from '../../core/models/teacher';
 import { CreateTeacherComponent } from '../create-teacher/create-teacher.component';
@@ -24,7 +24,7 @@ export class TeacherManagerComponent {
 
   onEdit($event: Teacher) {
     this.teacherToEdit = $event;
-    this.teacherStateService.starEditing();
+    this.teacherStateService.startEditing();
   }
 
   protected saveFinished() {

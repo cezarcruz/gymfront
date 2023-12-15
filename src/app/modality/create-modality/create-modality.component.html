@@ -1,4 +1,4 @@
-<p-panel header="Cadastro">
+<p-panel header="Cadastro de Modalidades">
   <form [formGroup]="modalityForm" (ngSubmit)="submit()">
     <div class="formgrid grid">
       <div class="field col">
@@ -18,6 +18,28 @@
       <div class="field col-12 md:col-2">
         <button pButton class="p-button-primary" type="submit">Salvar</button>
       </div>
+      <div class="field col-12 md:col-2">
+        <button
+          pButton
+          class="p-button-primary"
+          type="button"
+          (click)="cancel()"
+        >
+          Cancelar
+        </button>
+      </div>
+      @if (isEditing) {
+        <div class="field col-12 md:col-2">
+          <button
+            pButton
+            class="p-button-danger"
+            type="button"
+            (click)="remove()"
+          >
+            Remover
+          </button>
+        </div>
+      }
     </div>
   </form>
 </p-panel>

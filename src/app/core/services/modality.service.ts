@@ -20,4 +20,12 @@ export class ModalityService {
   public findAll(): Observable<Modality[]> {
     return this.http.get<Modality[]>(this.url + '/modalities');
   }
+
+  public update(modality: ModalityRequest, id: number) {
+    return this.http.post<void>(this.url + '/modalities/' + id, modality);
+  }
+
+  public remove(id: number) {
+    return this.http.delete<void>(this.url + '/modalities/' + id);
+  }
 }
