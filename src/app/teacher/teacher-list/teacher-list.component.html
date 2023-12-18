@@ -10,14 +10,12 @@
     >
       <ng-template pTemplate="header">
         <tr>
-          <th>Id</th>
           <th>Name</th>
           <th>Actions</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-teacher>
         <tr [pEditableRow]="teacher">
-          <td>{{ teacher.id }}</td>
           <td>
             {{ teacher.name }}
           </td>
