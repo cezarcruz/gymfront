@@ -10,6 +10,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Message } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 import { Observable } from 'rxjs';
 import { Modality } from '../../core/models';
@@ -19,7 +20,7 @@ import { ModalityStateService } from '../modality-state.service';
 @Component({
   selector: 'app-modality-list',
   standalone: true,
-  imports: [AsyncPipe, TableModule, ButtonModule],
+  imports: [AsyncPipe, TableModule, ButtonModule, MessagesModule],
   templateUrl: './modality-list.component.html',
   styleUrl: './modality-list.component.scss',
 })
