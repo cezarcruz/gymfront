@@ -31,7 +31,7 @@
     </div>
     <div class="formgrid grid">
       <div class="field col-12 md:col-6">
-        <label for="teacher">Modalidade</label>
+        <label for="teacher">Professor</label>
         @if (teachers$ | async; as teachers) {
           <p-dropdown
             formControlName="teacher"
@@ -45,7 +45,7 @@
         }
       </div>
       <div class="field col-12 md:col-6">
-        <label for="weekDays">Modalidade</label>
+        <label for="weekDays">Dias da Semana</label>
         @if (weekDays$ | async; as weekDays) {
           <p-multiSelect
             [options]="weekDays"

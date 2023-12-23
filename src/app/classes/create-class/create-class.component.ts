@@ -104,7 +104,7 @@ export class CreateClassComponent implements OnInit {
       return;
     }
 
-    this.teacherService.create(this.classForm.getRawValue()).subscribe(() => {
+    this.classService.create(this.classForm.getRawValue()).subscribe(() => {
       this.resetEditing();
       this.toastService.showSuccessMessage('Aula cadastrada com sucesso');
 
