@@ -21,11 +21,11 @@ export class TeacherService {
     return this.httpClient.get<Teacher[]>(this.url + '/teachers');
   }
 
-  public update(teacher: TeacherRequest, id: number): Observable<Teacher> {
+  public update(teacher: TeacherRequest, id: string): Observable<Teacher> {
     return this.httpClient.put<Teacher>(this.url + `/teachers/${id}`, teacher);
   }
 
-  public remove(id: number): Observable<unknown> {
+  public remove(id: string): Observable<unknown> {
     return this.httpClient.delete(this.url + '/teachers' + `/${id}`);
   }
 }

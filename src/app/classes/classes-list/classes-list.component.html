@@ -20,8 +20,8 @@
       <ng-template pTemplate="body" let-class>
         <tr [pEditableRow]="class">
           <td>{{ class.name }}</td>
-          <td>{{ class.modality }}</td>
-          <td>{{ class.teacher }}</td>
+          <td>{{ class.modality.name }}</td>
+          <td>{{ class.teacher.name }}</td>
           <td>{{ class.weekDays | appWeekDays }}</td>
           <td class="text-center">
             <div class="flex align-items-center justify-content-center gap-2">

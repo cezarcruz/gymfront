@@ -21,11 +21,11 @@ export class ClassesService {
     return this.httpClient.post<void>(this.url + '/classes', classes);
   }
 
-  public update(classes: ClassesRequest, id: number): Observable<void> {
+  public update(classes: ClassesRequest, id: string): Observable<void> {
     return this.httpClient.put<void>(this.url + '/classes/' + id, classes);
   }
 
-  public remove(id: number) {
+  public remove(id: string) {
     return this.httpClient.delete<void>(this.url + '/classes/' + id);
   }
 }

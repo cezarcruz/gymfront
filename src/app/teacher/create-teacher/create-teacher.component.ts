@@ -32,7 +32,7 @@ export class CreateTeacherComponent {
   private readonly toastService = inject(ToastService);
 
   protected isEditing: boolean = false;
-  protected editingId: number = 0;
+  protected editingId: string = '0';
 
   protected teacherForm = this.fb.group({
     name: ['', Validators.required],
@@ -59,7 +59,7 @@ export class CreateTeacherComponent {
       return;
     }
 
-    if (this.isEditing && this.editingId != 0) {
+    if (this.isEditing && this.editingId != '0') {
       this.teacherService
         .update(this.teacherForm.getRawValue(), this.editingId)
         .subscribe((body) => {
@@ -101,7 +101,7 @@ export class CreateTeacherComponent {
 
   private resetEditing() {
     this.teacherForm.reset();
-    this.editingId = 0;
+    this.editingId = '0';
     this.isEditing = false;
   }
 

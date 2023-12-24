@@ -18,7 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PanelModule } from 'primeng/panel';
 import { Observable } from 'rxjs';
-import { Classes, Modality } from '../../core/models';
+import { ClassRoomForm, Classes, Modality } from '../../core/models';
 import { Teacher } from '../../core/models/teacher';
 import {
   ClassesService,
@@ -57,7 +57,7 @@ export class CreateClassComponent implements OnInit {
   protected weekDays$ = new Observable<WeekDays[]>();
 
   protected isEditing: boolean = false;
-  protected editingId: number = 0;
+  protected editingId: string = '0';
 
   protected classForm = this.fb.group({
     name: [''],
@@ -77,7 +77,16 @@ export class CreateClassComponent implements OnInit {
     if (classes) {
       this.editingId = classes.id;
       this.isEditing = true;
-      this.classForm.patchValue(classes);
+
+      const classRoomForm = <ClassRoomForm>{
+        name: classes.name,
+        id: classes.id,
+        modality: classes.modality.id,
+        teacher: classes.teacher.id,
+        weekDays: classes.weekDays,
+      };
+
+      this.classForm.patchValue(classRoomForm);
     }
   }
 
@@ -93,7 +102,7 @@ export class CreateClassComponent implements OnInit {
       return;
     }
 
-    if (this.isEditing && this.editingId != 0) {
+    if (this.isEditing && this.editingId != '0') {
       this.classService
         .update(this.classForm.getRawValue(), this.editingId)
         .subscribe(() => {
@@ -127,7 +136,7 @@ export class CreateClassComponent implements OnInit {
 
   private resetEditing() {
     this.classForm.reset();
-    this.editingId = 0;
+    this.editingId = '0'; //todo should be somthing like EMPTY
     this.isEditing = false;
   }
 }

@@ -25,7 +25,7 @@ export class CreateModalityComponent {
   private readonly toastService = inject(ToastService);
 
   protected isEditing: boolean = false;
-  protected editingId: number = 0;
+  protected editingId: string = '0';
 
   protected modalityForm = this.fb.group({
     name: ['', Validators.required],
@@ -51,7 +51,7 @@ export class CreateModalityComponent {
       return;
     }
 
-    if (this.editingId && this.editingId != 0) {
+    if (this.editingId && this.editingId != '0') {
       this.modalityService
         .update(this.modalityForm.getRawValue(), this.editingId)
         .subscribe(() => {
@@ -91,7 +91,7 @@ export class CreateModalityComponent {
 
   private resetEditing() {
     this.modalityForm.reset();
-    this.editingId = 0;
+    this.editingId = '0';
     this.isEditing = false;
   }
 }

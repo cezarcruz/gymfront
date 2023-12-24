@@ -21,11 +21,11 @@ export class ModalityService {
     return this.http.get<Modality[]>(this.url + '/modalities');
   }
 
-  public update(modality: ModalityRequest, id: number) {
+  public update(modality: ModalityRequest, id: string) {
     return this.http.put<void>(this.url + '/modalities/' + id, modality);
   }
 
-  public remove(id: number) {
+  public remove(id: string) {
     return this.http.delete<void>(this.url + '/modalities/' + id);
   }
 }
