@@ -13,19 +13,58 @@
     </div>
 
     <div class="field col">
-      <label for="age">Idade</label>
+      <label class="block" for="birthDate">Data de nascimento</label>
 
-      <input
+      <p-inputMask
         type="text"
-        id="age"
-        pInputText
-        formControlName="age"
-        placeholder="Ex: 19"
-        [min]="0"
-        [max]="99"
+        inputId="birthDate"
+        formControlName="birthDate"
+        mask="99/99/9999"
+        placeholder="Ex: 21/12/2000"
         class="w-full"
         pKeyFilter="int"
       />
+    </div>
+  </div>
+
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-2">
+      <label for="document">Documento</label>
+      <input
+        formControlName="document"
+        id="document"
+        type="text"
+        pInputText
+        placeholder="Ex: xxxxxxxx"
+        class="w-full"
+      />
+    </div>
+  </div>
+
+  <div formGroupName="contact">
+    <div class="formgrid grid">
+      <div class="field col">
+        <label for="email">E-Mail</label>
+        <input
+          formControlName="email"
+          id="email"
+          type="text"
+          pInputText
+          placeholder="Ex: email@gmail.com"
+          class="w-full"
+        />
+      </div>
+      <div class="field col">
+        <label for="phone">Celular</label>
+        <input
+          formControlName="phone"
+          id="phone"
+          type="text"
+          pInputText
+          placeholder="Ex: (11) 99999-9999"
+          class="w-full"
+        />
+      </div>
     </div>
   </div>
 

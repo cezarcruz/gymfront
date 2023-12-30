@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
+import { InputMaskModule } from 'primeng/inputmask';
 import { KeyFilterModule } from 'primeng/keyfilter';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -26,6 +26,7 @@ import FormUtils from '../../shared/utils/form-utils';
     ButtonModule,
     InputTextModule,
     InputNumberModule,
+    InputMaskModule,
     KeyFilterModule,
   ],
   providers: [CepService],
@@ -40,7 +41,12 @@ export class CreateStudentComponent {
   studentForm = this.fb.group(
     {
       name: ['', [Validators.required]],
-      age: ['', [Validators.required, Validators.max(99)]],
+      birthDate: ['', [Validators.required]],
+      document: [''],
+      contact: this.fb.group({
+        phone: ['', [Validators.required]],
+        email: ['', [Validators.required]],
+      }),
       address: this.fb.group({
         zipcode: [
           '01310-930',
@@ -53,6 +59,8 @@ export class CreateStudentComponent {
         street: [{ value: '', disabled: true }, [Validators.required]],
         num: [{ value: '', disabled: true }, [Validators.required]],
         neighborhood: [{ value: '', disabled: true }, [Validators.required]],
+        state: [{ value: '', disabled: true }, [Validators.required]],
+        city: [{ value: '', disabled: true }, [Validators.required]],
       }),
     },
     { updateOn: 'blur' },
