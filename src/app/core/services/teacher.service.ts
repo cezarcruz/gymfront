@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+import { Page } from '../models';
 import { Teacher } from '../models/teacher';
 import { TeacherRequest } from './request/teacher-request';
 
@@ -18,7 +19,9 @@ export class TeacherService {
   }
 
   public getAll(): Observable<Teacher[]> {
-    return this.httpClient.get<Teacher[]>(this.url + '/teachers');
+    return this.httpClient
+      .get<Page<Teacher>>(this.url + '/teachers')
+      .pipe(map((item) => item.elements));
   }
 
   public update(teacher: TeacherRequest, id: string): Observable<Teacher> {

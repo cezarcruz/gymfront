@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment.development';
-import { Modality } from '../models';
+import { Modality, Page } from '../models';
 import { ModalityRequest } from './request';
 
 @Injectable({
@@ -18,7 +19,9 @@ export class ModalityService {
   }
 
   public findAll(): Observable<Modality[]> {
-    return this.http.get<Modality[]>(this.url + '/modalities');
+    return this.http
+      .get<Page<Modality>>(this.url + '/modalities')
+      .pipe(map((item) => item.elements));
   }
 
   public update(modality: ModalityRequest, id: string) {
