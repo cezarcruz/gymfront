@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TeacherManagerComponent } from './teacher-manager.component';
-import { TeacherService, ToastService } from '../../core/services';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TeacherService } from '../../core/services';
+import { ToastService } from '../../shared/services';
+import { TeacherManagerComponent } from './teacher-manager.component';
 
 describe('TeacherManagerComponent', () => {
   let component: TeacherManagerComponent;
